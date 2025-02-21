@@ -1,0 +1,20 @@
+{
+  "buildFiles": [
+    "/Users/zadeveloper/development/flutter/packages/flutter_tools/gradle/src/main/groovy/CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "/Users/zadeveloper/Library/Android/sdk/cmake/3.22.1/bin/ninja",
+      "-C",
+      "/Users/zadeveloper/now/one_more_time/android/app/.cxx/RelWithDebInfo/3f6s1c31/armeabi-v7a",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "/Users/zadeveloper/Library/Android/sdk/cmake/3.22.1/bin/ninja",
+    "-C",
+    "/Users/zadeveloper/now/one_more_time/android/app/.cxx/RelWithDebInfo/3f6s1c31/armeabi-v7a",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {}
+}
