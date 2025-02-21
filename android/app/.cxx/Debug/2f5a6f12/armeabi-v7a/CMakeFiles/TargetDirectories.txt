@@ -1,0 +1,2 @@
+/Users/zadeveloper/now/one_more_time/android/app/.cxx/Debug/2f5a6f12/armeabi-v7a/CMakeFiles/edit_cache.dir
+/Users/zadeveloper/now/one_more_time/android/app/.cxx/Debug/2f5a6f12/armeabi-v7a/CMakeFiles/rebuild_cache.dir
