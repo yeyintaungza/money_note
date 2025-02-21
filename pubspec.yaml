@@ -1,0 +1,31 @@
+name: moneynote
+description: "A new Flutter project."
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.7.0
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  isar: ^3.1.0+1
+  isar_flutter_libs: ^3.1.0+1
+  path_provider: ^2.1.5
+  flutter_riverpod: ^2.6.1
+  riverpod_annotation: ^2.6.1
+  intl: ^0.20.2
+  table_calendar: ^3.2.0
+  fl_chart: ^0.70.2
+  month_picker_dialog: ^6.0.2
+  shared_preferences: ^2.5.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+  isar_generator: ^3.1.0+1
+  build_runner: ^2.4.13
+  custom_lint: ^0.6.4
+flutter:
+  uses-material-design: true
