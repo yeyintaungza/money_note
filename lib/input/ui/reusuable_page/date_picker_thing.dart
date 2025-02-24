@@ -50,7 +50,6 @@ class _DateOrMonthSelectorState extends State<DateOrMonthSelector> {
   // var date = DateTime(2018, 1, 13);
   // var newDate = DateTime(date.year, date.month - 1, date.day);
   // 2017-12-13
-  // https://stackoverflow.com/questions/54792056/add-subtract-months-years-to-date-in-dart'
   void _previousMonth() {
     setState(() {
       _selectedDate = DateTime(_selectedDate.year, _selectedDate.month - 1);

@@ -36,9 +36,9 @@ class _OtherPageState extends ConsumerState<OtherPage> {
               ),
               child: Row(
                 children: [
-                  Icon(Icons.settings),
+                  Icon(Icons.settings, color: Colors.black),
                   SizedBox(width: 10),
-                  Text('Settings'),
+                  Text('Settings', style: TextStyle(color: Colors.black)),
                 ],
               ),
             ),
@@ -54,9 +54,9 @@ class _OtherPageState extends ConsumerState<OtherPage> {
                 children: [
                   Row(
                     children: [
-                      Icon(Icons.dark_mode),
+                      Icon(Icons.dark_mode, color: Colors.black),
                       SizedBox(width: 10),
-                      Text('Dark mode'),
+                      Text('Dark mode', style: TextStyle(color: Colors.black)),
                     ],
                   ),
                   Switch(
@@ -79,33 +79,45 @@ class _OtherPageState extends ConsumerState<OtherPage> {
                 children: [
                   Row(
                     children: [
-                      Icon(Icons.insert_chart),
+                      Icon(Icons.insert_chart, color: Colors.black),
                       SizedBox(width: 10),
-                      Text('Annual report'),
+                      Text(
+                        'Annual report',
+                        style: TextStyle(color: Colors.black),
+                      ),
                     ],
                   ),
                   Divider(),
                   Row(
                     children: [
-                      Icon(Icons.pie_chart),
+                      Icon(Icons.pie_chart, color: Colors.black),
                       SizedBox(width: 10),
-                      Text('Category annual report'), // TODO: start from here
+                      Text(
+                        'Category annual report',
+                        style: TextStyle(color: Colors.black),
+                      ), // TODO: start from here
                     ],
                   ),
                   Divider(),
                   Row(
                     children: [
-                      Icon(Icons.insert_chart),
+                      Icon(Icons.insert_chart, color: Colors.black),
                       SizedBox(width: 10),
-                      Text('All time report'),
+                      Text(
+                        'All time report',
+                        style: TextStyle(color: Colors.black),
+                      ),
                     ],
                   ),
                   Divider(),
                   Row(
                     children: [
-                      Icon(Icons.pie_chart),
+                      Icon(Icons.pie_chart, color: Colors.black),
                       SizedBox(width: 10),
-                      Text('All time Category report'),
+                      Text(
+                        'All time Category report',
+                        style: TextStyle(color: Colors.black),
+                      ),
                     ],
                   ),
                 ],
@@ -122,17 +134,20 @@ class _OtherPageState extends ConsumerState<OtherPage> {
                 children: [
                   Row(
                     children: [
-                      Icon(Icons.tv),
+                      Icon(Icons.tv, color: Colors.black),
                       SizedBox(width: 10),
-                      Text('Remove Ads'),
+                      Text('Remove Ads', style: TextStyle(color: Colors.black)),
                     ],
                   ),
                   Divider(),
                   Row(
                     children: [
-                      Icon(Icons.restore),
+                      Icon(Icons.restore, color: Colors.black),
                       SizedBox(width: 10),
-                      Text('Restore previous ads removal'),
+                      Text(
+                        'Restore previous ads removal',
+                        style: TextStyle(color: Colors.black),
+                      ),
                     ],
                   ),
                 ],
@@ -149,17 +164,23 @@ class _OtherPageState extends ConsumerState<OtherPage> {
                 children: [
                   Row(
                     children: [
-                      Icon(Icons.download),
+                      Icon(Icons.download, color: Colors.black),
                       SizedBox(width: 10),
-                      Text('Data output'),
+                      Text(
+                        'Data output',
+                        style: TextStyle(color: Colors.black),
+                      ),
                     ],
                   ),
                   Divider(),
                   Row(
                     children: [
-                      Icon(Icons.system_update_alt),
+                      Icon(Icons.system_update_alt, color: Colors.black),
                       SizedBox(width: 10),
-                      Text('Data backup / Restore'),
+                      Text(
+                        'Data backup / Restore',
+                        style: TextStyle(color: Colors.black),
+                      ),
                     ],
                   ),
                 ],
@@ -176,17 +197,20 @@ class _OtherPageState extends ConsumerState<OtherPage> {
                 children: [
                   Row(
                     children: [
-                      Icon(Icons.help),
+                      Icon(Icons.help, color: Colors.black),
                       SizedBox(width: 10),
-                      Text('Help/ FAQ'),
+                      Text('Help/ FAQ', style: TextStyle(color: Colors.black)),
                     ],
                   ),
                   Divider(),
                   Row(
                     children: [
-                      Icon(Icons.info),
+                      Icon(Icons.info, color: Colors.black),
                       SizedBox(width: 10),
-                      Text('App Information'),
+                      Text(
+                        'App Information',
+                        style: TextStyle(color: Colors.black),
+                      ),
                     ],
                   ),
                 ],

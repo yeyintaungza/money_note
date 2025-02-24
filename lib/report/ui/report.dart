@@ -112,10 +112,16 @@ class _ReportPageState extends ConsumerState<ReportPage> {
                       children: [
                         Column(
                           children: [
-                            Text('Expense'),
+                            Text(
+                              'Expense',
+                              style: TextStyle(color: Colors.black),
+                            ),
                             totalMonthlyExpense.when(
                               data: (expense) {
-                                return Text('\$ $expense');
+                                return Text(
+                                  '\$ $expense',
+                                  style: TextStyle(color: Colors.black),
+                                );
                               },
                               loading: () => const Text('Loading...'),
                               error:
@@ -124,13 +130,22 @@ class _ReportPageState extends ConsumerState<ReportPage> {
                             ),
                           ],
                         ),
-                        SizedBox(height: 40, child: VerticalDivider()),
+                        SizedBox(
+                          height: 40,
+                          child: VerticalDivider(color: Colors.redAccent),
+                        ),
                         Column(
                           children: [
-                            Text('Income'),
+                            Text(
+                              'Income',
+                              style: TextStyle(color: Colors.black),
+                            ),
                             totalMonthlyIncome.when(
                               data: (income) {
-                                return Text('\$ $income');
+                                return Text(
+                                  '\$ $income',
+                                  style: TextStyle(color: Colors.black),
+                                );
                               },
                               loading: () => const Text('Loading...'),
                               error:
@@ -141,13 +156,19 @@ class _ReportPageState extends ConsumerState<ReportPage> {
                         ),
                       ],
                     ),
-                    Divider(),
+                    Divider(color: Colors.redAccent),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text('Income and expense'),
+                        Text(
+                          'Income and expense',
+                          style: TextStyle(color: Colors.black),
+                        ),
                         SizedBox(width: 20),
-                        Text('\$ $total'),
+                        Text(
+                          '\$ $total',
+                          style: TextStyle(color: Colors.black),
+                        ),
                       ],
                     ),
                   ],
@@ -175,7 +196,10 @@ class _ReportPageState extends ConsumerState<ReportPage> {
                                   ? Colors.blue
                                   : Colors.grey, // Highlight Expense button
                         ),
-                        child: const Text('Expense'),
+                        child: const Text(
+                          'Expense',
+                          style: TextStyle(color: Colors.black),
+                        ),
                       ),
                       const SizedBox(width: 20),
                       ElevatedButton(
@@ -189,7 +213,10 @@ class _ReportPageState extends ConsumerState<ReportPage> {
                                   ? Colors.blue
                                   : Colors.grey, // Highlight Income button
                         ),
-                        child: const Text('Income'),
+                        child: const Text(
+                          'Income',
+                          style: TextStyle(color: Colors.black),
+                        ),
                       ),
                     ],
                   ),

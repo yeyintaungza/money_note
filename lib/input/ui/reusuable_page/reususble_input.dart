@@ -37,7 +37,7 @@ class _ReUsuableInputState extends ConsumerState<ReUsuableInput> {
   final TextEditingController _noteController = TextEditingController();
   final TextEditingController _amountController = TextEditingController();
 
-  // PERF: UI  inconsisted fixed
+  // PERF:
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -85,8 +85,12 @@ class _ReUsuableInputState extends ConsumerState<ReUsuableInput> {
                           border: OutlineInputBorder(
                             borderSide: BorderSide.none,
                           ),
+                          //FIX: not well visible in dark mode
                           hintText: 'Not entered',
-                          hintStyle: TextStyle(fontWeight: FontWeight.w200),
+                          hintStyle: TextStyle(
+                            fontWeight: FontWeight.w200,
+                            color: Colors.black,
+                          ),
                         ),
                       ),
                     ),
@@ -123,6 +127,7 @@ class _ReUsuableInputState extends ConsumerState<ReUsuableInput> {
                           filled: true,
                           fillColor: Colors.lightBlueAccent,
                           hintText: '0.00',
+                          hintStyle: TextStyle(color: Colors.black),
                           border: OutlineInputBorder(
                             borderSide: BorderSide.none,
                           ),
@@ -169,10 +174,10 @@ class _ReUsuableInputState extends ConsumerState<ReUsuableInput> {
                     setState(() {
                       _selectedGridItem = index;
 
+                      //NOTE: another functionality if i want to
                       //if (index == 11) {
                       //  Navigator.push(
                       //    context,
-                      //    //WARNING: might not use this at all
                       //    MaterialPageRoute(
                       //      builder: (context) => EditCategories(),
                       //    ),
@@ -187,7 +192,10 @@ class _ReUsuableInputState extends ConsumerState<ReUsuableInput> {
                         color:
                             _selectedGridItem == index
                                 ? Colors.lightBlueAccent
-                                : Colors.black12,
+                                : (Theme.of(context).brightness ==
+                                        Brightness.dark
+                                    ? Colors.white24
+                                    : Colors.black12),
                         width: 2.0,
                       ),
                       borderRadius: BorderRadius.circular(10),
@@ -263,7 +271,10 @@ class _ReUsuableInputState extends ConsumerState<ReUsuableInput> {
                         Colors.lightBlueAccent,
                       ),
                     ),
-                    child: Text('Submit'),
+                    child: Text(
+                      'Submit',
+                      style: TextStyle(color: Colors.black),
+                    ),
                   ),
                 ),
               ),

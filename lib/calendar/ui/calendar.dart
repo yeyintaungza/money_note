@@ -93,6 +93,8 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
             },
           ),
 
+          SizedBox(height: 10),
+
           //NOTE: monthly total report
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 14),
@@ -107,16 +109,25 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('Income'),
+                    Text('Income', style: TextStyle(color: Colors.black)),
                     totalIncome.when(
                       data: (income) {
-                        return Text('\$ $income');
+                        return Text(
+                          '\$ $income',
+                          style: TextStyle(color: Colors.black),
+                        );
                       },
                       error: (error, st) {
-                        return const Text('error');
+                        return const Text(
+                          'error',
+                          style: TextStyle(color: Colors.black),
+                        );
                       },
                       loading: () {
-                        return const Text('Loading...');
+                        return const Text(
+                          'Loading...',
+                          style: TextStyle(color: Colors.black),
+                        );
                       },
                     ),
                   ],
@@ -128,19 +139,28 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('Expense'),
+                    Text('Expense', style: TextStyle(color: Colors.black)),
                     totalExpense.when(
                       data: (expense) {
                         // This is where you access the double value
-                        return Text('\$ $expense');
+                        return Text(
+                          '\$ $expense',
+                          style: TextStyle(color: Colors.black),
+                        );
                       },
                       loading: () {
                         // Handle loading state, you can show a loading message or indicator
-                        return const Text('Loading...');
+                        return const Text(
+                          'Loading...',
+                          style: TextStyle(color: Colors.black),
+                        );
                       },
                       error: (error, stackTrace) {
                         // Handle error state, you can show an error message
-                        return const Text('Error occurred');
+                        return const Text(
+                          'Error occurred',
+                          style: TextStyle(color: Colors.black),
+                        );
                       },
                     ),
                   ],
@@ -151,7 +171,10 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
                 ),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [Text('Total'), Text('\$ $total')],
+                  children: [
+                    Text('Total', style: TextStyle(color: Colors.black)),
+                    Text('\$ $total', style: TextStyle(color: Colors.black)),
+                  ],
                 ),
               ],
             ),
@@ -184,7 +207,12 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
                         children: [
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [Text('\$ ${expense.amount} ')],
+                            children: [
+                              Text(
+                                '\$ ${expense.amount} ',
+                                style: TextStyle(color: Colors.black),
+                              ),
+                            ],
                           ),
                           const SizedBox(height: 10),
                           Row(
@@ -202,21 +230,28 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
                                             'icon': Icons.error,
                                           }, // Default icon in case of no match
                                     )['icon'],
+                                    color: Colors.black,
                                   ),
                                   const SizedBox(width: 5),
                                   Text(
                                     expense.category,
                                     style: const TextStyle(
                                       fontWeight: FontWeight.bold,
+                                      color: Colors.black,
                                     ),
                                   ),
                                   const SizedBox(width: 5),
-                                  const Text('test'),
+                                  //Text(
+                                  //  //FIX: this to dynamic value
+                                  //  expense.description,
+                                  //  style: TextStyle(color: Colors.black),
+                                  //),
                                 ],
                               ),
 
                               Text(
                                 expense.description,
+                                style: TextStyle(color: Colors.black),
                                 overflow: TextOverflow.ellipsis,
                               ),
                             ],

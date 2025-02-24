@@ -51,6 +51,9 @@ class _MyAppState extends ConsumerState<MyApp> {
     final isDarkMode = ref.watch(themeNotifierProvider);
     return MaterialApp(
       title: 'Flutter Demo',
+
+      //TODO: to manipulate theme
+      //ThemeData.dark().copywith (), ThemeData.light().copywith()
       theme: ThemeData.light(useMaterial3: true),
       darkTheme: ThemeData.dark(),
       themeMode: isDarkMode ? ThemeMode.dark : ThemeMode.light,

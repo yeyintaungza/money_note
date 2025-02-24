@@ -115,23 +115,23 @@ class BloodyPieChart<T> extends StatelessWidget {
           height: screenHeight * 0.3, // 30% of screen height
           child: PieChart(PieChartData(sections: pieChartSections)),
         ),
-        Divider(),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                children: [
-                  Icon(Icons.food_bank),
-                  SizedBox(width: 10),
-                  Text('Food'),
-                ],
-              ),
-              Text('400.00 \$'), // You can dynamically replace this as well
-            ],
-          ),
-        ),
+        //        Divider(),
+        //Padding(
+        //  padding: const EdgeInsets.all(8.0),
+        //  child: Row(
+        //    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //    children: [
+        //      Row(
+        //        children: [
+        //          Icon(Icons.food_bank),
+        //          SizedBox(width: 10),
+        //          Text('Food'),
+        //        ],
+        //      ),
+        //      Text('400.00 \$'), // You can dynamically replace this as well
+        //    ],
+        //  ),
+        //),
       ],
     );
   }
