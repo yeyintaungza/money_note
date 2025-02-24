@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:month_picker_dialog/month_picker_dialog.dart';
 
+//PERF:
 class DateOrMonthSelector extends StatefulWidget {
   final bool isDay;
   final Function(DateTime dateTime)
@@ -16,7 +17,6 @@ class DateOrMonthSelector extends StatefulWidget {
   _DateOrMonthSelectorState createState() => _DateOrMonthSelectorState();
 }
 
-//WARNING: feb trouble
 class _DateOrMonthSelectorState extends State<DateOrMonthSelector> {
   DateTime _selectedDate = DateTime.now();
   //NOTE: show dd-MM-yy EEE
@@ -46,54 +46,26 @@ class _DateOrMonthSelectorState extends State<DateOrMonthSelector> {
     });
   }
 
+  // TODO:
+  // var date = DateTime(2018, 1, 13);
+  // var newDate = DateTime(date.year, date.month - 1, date.day);
+  // 2017-12-13
+  // https://stackoverflow.com/questions/54792056/add-subtract-months-years-to-date-in-dart'
   void _previousMonth() {
     setState(() {
-      // Go to the previous month
-      _selectedDate = DateTime(
-        _selectedDate.year,
-        _selectedDate.month - 1,
-        _selectedDate.day,
-      );
-
-      // If the new month is invalid (e.g., Feb 30th), adjust to the last day of the previous month
-      if (_selectedDate.month != (_selectedDate.month - 1) % 12) {
-        // Adjust to the last valid day of the previous month
-        _selectedDate = DateTime(
-          _selectedDate.year,
-          _selectedDate.month + 1,
-          0,
-        ); // Last day of the previous month
-      }
-
-      widget.onDateChanged(_selectedDate);
+      _selectedDate = DateTime(_selectedDate.year, _selectedDate.month - 1);
     });
   }
 
   void _nextMonth() {
     setState(() {
-      // Go to the next month
-      _selectedDate = DateTime(
-        _selectedDate.year,
-        _selectedDate.month + 1,
-        _selectedDate.day,
-      );
-
-      // If the new month is invalid (e.g., Feb 30th), adjust to the last day of the next month
-      if (_selectedDate.month != (_selectedDate.month - 1) % 12 + 1) {
-        // Adjust to the last valid day of the next month
-        _selectedDate = DateTime(
-          _selectedDate.year,
-          _selectedDate.month + 1,
-          0,
-        ); // Last day of the next month
-      }
-
-      widget.onDateChanged(_selectedDate);
+      _selectedDate = DateTime(_selectedDate.year, _selectedDate.month + 1);
     });
   }
 
   //NOTE: Function to pick a new date
   Future<void> _selectDate(BuildContext context) async {
+    // TODO: steal changing month functionality from showDatePicker
     final DateTime? pickedDate = await showDatePicker(
       context: context,
       initialDate: _selectedDate,
@@ -123,9 +95,6 @@ class _DateOrMonthSelectorState extends State<DateOrMonthSelector> {
       });
     }
   }
-
-  //FIX: afte modifying this un-expected ui behavior happes the input /income page
-  //might be the effect of month picker pkg
 
   @override
   Widget build(BuildContext context) {

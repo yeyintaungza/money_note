@@ -8,7 +8,6 @@ import '../../data/service/income_service.dart';
 import 'chartProvider.dart';
 
 class ReportPage extends ConsumerStatefulWidget {
-  /// Monthly expense Report in pie chart
   const ReportPage({super.key});
 
   @override
@@ -18,29 +17,24 @@ class ReportPage extends ConsumerStatefulWidget {
 class _ReportPageState extends ConsumerState<ReportPage> {
   DateTime _selectDate = DateTime.now();
 
-  // Fix for on date change from jan to next month skips current month
   void _onDateChanged(DateTime newDate) {
-    setState(() {
-      _selectDate = newDate;
-      debugPrint('$_selectDate');
-    });
+    if (_selectDate != newDate) {
+      setState(() {
+        _selectDate = newDate;
+        debugPrint('$_selectDate');
+      });
+    }
   }
 
-  DateTimeRange getMonthDateRange(DateTime date) {
-    final startOfMonth = DateTime(date.year, date.month, 1);
-    final endOfMonth = DateTime(
-      date.year,
-      date.month + 1,
-      0,
-      23,
-      59,
-      59,
-    ); // Correct end of month calculation
-    final DateTimeRange givenMonth = DateTimeRange(
-      start: startOfMonth,
-      end: endOfMonth,
-    );
-    return givenMonth;
+  DateTimeRange _getMonthDateRange(DateTime date) {
+    final firstDayOfMonth = DateTime(date.year, date.month, 1);
+    //NOTE: add one month to current month and subtract one day to get the last day of the current month
+    //this is implicit , 0 force to go to the last day of previous month
+    final lastDayOfMonth =
+        (date.month == 12)
+            ? DateTime(date.year + 1, 1, 0)
+            : DateTime(date.year, date.month + 1, 0);
+    return DateTimeRange(start: firstDayOfMonth, end: lastDayOfMonth);
   }
 
   @override
@@ -48,18 +42,18 @@ class _ReportPageState extends ConsumerState<ReportPage> {
     final chartType = ref.watch(chartTypeProvider); // Get current chart type
 
     final monthlyExpenseList = ref.watch(
-      monthlyExpenseListProvider(getMonthDateRange(_selectDate)),
+      monthlyExpenseListProvider(_getMonthDateRange(_selectDate)),
     );
 
     final monthlyIncomeList = ref.watch(
-      monthlyIncomeListProvider(getMonthDateRange(_selectDate)),
+      monthlyIncomeListProvider(_getMonthDateRange(_selectDate)),
     );
 
     final totalMonthlyExpense = ref.watch(
-      totalExpneseMonthlyProvider(getMonthDateRange(_selectDate)),
+      totalExpneseMonthlyProvider(_getMonthDateRange(_selectDate)),
     );
     final totalMonthlyIncome = ref.watch(
-      totalIncomeMonthlyProvider(getMonthDateRange(_selectDate)),
+      totalIncomeMonthlyProvider(_getMonthDateRange(_selectDate)),
     );
 
     double total = 0.0;

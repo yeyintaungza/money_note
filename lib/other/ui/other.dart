@@ -13,7 +13,8 @@ class OtherPage extends ConsumerStatefulWidget {
 class _OtherPageState extends ConsumerState<OtherPage> {
   @override
   Widget build(BuildContext context) {
-    final isDark = ref.watch(themeProvider);
+    // this is notifier provider
+    final isDark = ref.watch(themeNotifierProvider);
 
     return Scaffold(
       resizeToAvoidBottomInset: true,
@@ -61,7 +62,7 @@ class _OtherPageState extends ConsumerState<OtherPage> {
                   Switch(
                     value: isDark, //NOTE: load the value from main file
                     onChanged: (bool value) {
-                      ref.read(themeProvider.notifier).toggleTheme();
+                      ref.read(themeNotifierProvider.notifier).toggleTheme();
                     },
                   ),
                 ],

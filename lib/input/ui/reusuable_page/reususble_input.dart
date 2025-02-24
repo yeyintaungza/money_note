@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:moneynote/input/ui/reusuable_page/date_picker_thing.dart';
+import 'package:moneynote/data/service/expense_service.dart';
 
 import '../../../data/models/expense.dart';
 import '../../../data/models/income.dart';
-import '../../../data/service/expense_service.dart';
 import '../../../data/service/income_service.dart';
+import 'date_picker_thing.dart';
 
 class ReUsuableInput extends ConsumerStatefulWidget {
   final List<Map<String, dynamic>> categorylist;
@@ -23,8 +23,6 @@ class ReUsuableInput extends ConsumerStatefulWidget {
 
 class _ReUsuableInputState extends ConsumerState<ReUsuableInput> {
   int _selectedGridItem = -1;
-  final String _note = '';
-  final double _amount = 0.0;
   DateTime _selectDate = DateTime.now(); // just to hold a date time value
 
   //NOTE: pass this func to DateOrMonthSelector , and then
@@ -39,6 +37,7 @@ class _ReUsuableInputState extends ConsumerState<ReUsuableInput> {
   final TextEditingController _noteController = TextEditingController();
   final TextEditingController _amountController = TextEditingController();
 
+  // PERF: UI  inconsisted fixed
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -46,66 +45,105 @@ class _ReUsuableInputState extends ConsumerState<ReUsuableInput> {
         mainAxisAlignment: MainAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          ListTile(
-            leading: Text('Date', style: TextStyle(fontSize: 18)),
-            title: DateOrMonthSelector(
-              isDay: true,
-              onDateChanged: _onDateChanged,
+          //NOTE: date picker
+          Padding(
+            padding: const EdgeInsets.fromLTRB(18, 0, 0, 5),
+            child: Row(
+              children: [
+                Text('Date', style: TextStyle(fontSize: 18)),
+                SizedBox(width: 35),
+                Align(
+                  child: DateOrMonthSelector(
+                    isDay: true,
+                    onDateChanged: _onDateChanged,
+                  ),
+                ),
+              ],
             ),
           ),
           Padding(
             padding: const EdgeInsets.fromLTRB(18, 0, 18, 0),
             child: Divider(height: 0),
           ),
-          ListTile(
-            leading: Text('Note      ', style: TextStyle(fontSize: 18)),
-            //WARNING: width of this is not consistant , dunno how to fix it yet
-            title: SizedBox(
-              height: 40,
-              child: TextField(
-                controller: _noteController,
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: Colors.lightBlueAccent,
-                  border: OutlineInputBorder(borderSide: BorderSide.none),
-                  hintText: 'Not entered',
-                  hintStyle: TextStyle(fontWeight: FontWeight.w200),
-                ),
-              ),
-            ),
-            trailing: Text(' '),
-          ),
+
+          //NOTE: First block: 'Note' and its TextField
           Padding(
-            padding: const EdgeInsets.fromLTRB(18, 0, 18, 0),
+            padding: const EdgeInsets.fromLTRB(18, 8, 0, 0),
+            child: Row(
+              children: [
+                Text('Note', style: TextStyle(fontSize: 18)),
+                Expanded(
+                  child: Align(
+                    child: SizedBox(
+                      width: 200,
+                      height: 40,
+                      child: TextField(
+                        controller: _noteController,
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Colors.lightBlueAccent,
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                          ),
+                          hintText: 'Not entered',
+                          hintStyle: TextStyle(fontWeight: FontWeight.w200),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+
+          // Divider (optional for separation between fields)
+          Padding(
+            padding: const EdgeInsets.fromLTRB(18, 10, 18, 0),
             child: Divider(height: 0),
           ),
-          ListTile(
-            leading: Text(
-              widget.isIncome ? 'Income' : 'Expense',
-              style: TextStyle(fontSize: 18),
-            ),
-            title: SizedBox(
-              height: 40,
-              child: TextField(
-                controller: _amountController,
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: Colors.lightBlueAccent,
-                  hintText: '0.00',
-                  border: OutlineInputBorder(borderSide: BorderSide.none),
+
+          //NOTE: Second block: 'Income' or 'Expense' and its TextField
+          Padding(
+            // different right padding to handle '$'
+            padding: const EdgeInsets.fromLTRB(18, 8, 18, 0),
+            child: Row(
+              children: [
+                Text(
+                  widget.isIncome ? 'Income ' : 'Expense',
+                  style: TextStyle(fontSize: 18),
                 ),
-                keyboardType: TextInputType.numberWithOptions(
-                  signed: true,
-                  decimal: true,
+                Expanded(
+                  child: Align(
+                    child: SizedBox(
+                      width: 200,
+                      height: 40,
+                      child: TextField(
+                        controller: _amountController,
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Colors.lightBlueAccent,
+                          hintText: '0.00',
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                          ),
+                        ),
+                        keyboardType: TextInputType.numberWithOptions(
+                          signed: true,
+                          decimal: true,
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
-              ),
+                Text('\$', style: TextStyle(fontSize: 18)),
+              ],
             ),
-            trailing: Text('\$', style: TextStyle(fontSize: 18)),
           ),
           Padding(
-            padding: const EdgeInsets.fromLTRB(18, 0, 18, 0),
+            padding: const EdgeInsets.fromLTRB(18, 10, 18, 0),
             child: Divider(height: 0),
           ),
+
           Row(
             children: [
               Padding(
@@ -172,7 +210,6 @@ class _ReUsuableInputState extends ConsumerState<ReUsuableInput> {
               }),
             ),
           ),
-
           Row(
             children: [
               Expanded(

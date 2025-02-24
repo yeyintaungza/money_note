@@ -9,7 +9,7 @@ import 'package:path_provider/path_provider.dart';
 import 'other/ui/theme_preference.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized(); // Ensures that the app is properly initialized before running
+  WidgetsFlutterBinding.ensureInitialized();
 
   // Initialize Isar
   final dir = await getApplicationDocumentsDirectory();
@@ -48,7 +48,7 @@ class MyApp extends ConsumerStatefulWidget {
 class _MyAppState extends ConsumerState<MyApp> {
   @override
   Widget build(BuildContext context) {
-    final isDarkMode = ref.watch(themeProvider);
+    final isDarkMode = ref.watch(themeNotifierProvider);
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData.light(useMaterial3: true),
