@@ -43,25 +43,15 @@ class _AppState extends State<App> {
 
         currentIndex: _selectedIndex, // Track selected index
         onTap: _onItemTapped, // change the index on tap
-
         // just the icons
         items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.edit),
-            label: 'Input',
-          ),
+          BottomNavigationBarItem(icon: Icon(Icons.edit), label: 'Input'),
           BottomNavigationBarItem(
             icon: Icon(Icons.calendar_today),
             label: 'Calendar',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.pie_chart),
-            label: 'Report',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.more_horiz),
-            label: 'Other',
-          ),
+          BottomNavigationBarItem(icon: Icon(Icons.pie_chart), label: 'Report'),
+          BottomNavigationBarItem(icon: Icon(Icons.more_horiz), label: 'Other'),
         ],
       ),
     );

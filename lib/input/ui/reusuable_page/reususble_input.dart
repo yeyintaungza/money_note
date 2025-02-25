@@ -85,7 +85,6 @@ class _ReUsuableInputState extends ConsumerState<ReUsuableInput> {
                           border: OutlineInputBorder(
                             borderSide: BorderSide.none,
                           ),
-                          //FIX: not well visible in dark mode
                           hintText: 'Not entered',
                           hintStyle: TextStyle(
                             fontWeight: FontWeight.w200,
@@ -228,32 +227,38 @@ class _ReUsuableInputState extends ConsumerState<ReUsuableInput> {
                     //but can't choose category
                     //possibly text field is not cleaned and donot show success msg
                     onPressed: () {
-                      final note = _noteController.text;
-                      final amount =
-                          double.tryParse(_amountController.text) ?? 0.0;
-                      final category =
-                          _selectedGridItem >= 0 &&
-                                  _selectedGridItem < widget.categorylist.length
-                              ? widget.categorylist[_selectedGridItem]['label']
-                              : '';
-                      final date = _selectDate;
+                      // it's working i guess
+                      if (_noteController.text.isNotEmpty &&
+                          _amountController.text.isNotEmpty) {
+                        final note = _noteController.text;
+                        final amount =
+                            double.tryParse(_amountController.text) ?? 0.0;
+                        final category =
+                            _selectedGridItem >= 0 &&
+                                    _selectedGridItem <
+                                        widget.categorylist.length
+                                ? widget
+                                    .categorylist[_selectedGridItem]['label']
+                                : '';
+                        final date = _selectDate;
 
-                      if (widget.isIncome) {
-                        final income = Income(
-                          amount: amount,
-                          date: date,
-                          description: note,
-                          category: category,
-                        );
-                        ref.read(createIncomeProvider(income));
-                      } else {
-                        final expense = Expense(
-                          amount: amount,
-                          date: date,
-                          description: note,
-                          category: category,
-                        );
-                        ref.read(createExpenseProvider(expense));
+                        if (widget.isIncome) {
+                          final income = Income(
+                            amount: amount,
+                            date: date,
+                            description: note,
+                            category: category,
+                          );
+                          ref.read(createIncomeProvider(income));
+                        } else {
+                          final expense = Expense(
+                            amount: amount,
+                            date: date,
+                            description: note,
+                            category: category,
+                          );
+                          ref.read(createExpenseProvider(expense));
+                        }
                       }
 
                       //NOTE: Clear text fields and reset the category and date
