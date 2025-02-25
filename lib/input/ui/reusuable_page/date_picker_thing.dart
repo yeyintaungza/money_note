@@ -5,8 +5,8 @@ import 'package:month_picker_dialog/month_picker_dialog.dart';
 //PERF:
 class DateOrMonthSelector extends StatefulWidget {
   final bool isDay;
-  final Function(DateTime dateTime)
-  onDateChanged; // don't really understand the idea of this
+  //NOTE: only the lord know what this does really
+  final Function(DateTime dateTime) onDateChanged;
 
   const DateOrMonthSelector({
     super.key,
@@ -53,12 +53,14 @@ class _DateOrMonthSelectorState extends State<DateOrMonthSelector> {
   void _previousMonth() {
     setState(() {
       _selectedDate = DateTime(_selectedDate.year, _selectedDate.month - 1);
+      widget.onDateChanged(_selectedDate);
     });
   }
 
   void _nextMonth() {
     setState(() {
       _selectedDate = DateTime(_selectedDate.year, _selectedDate.month + 1);
+      widget.onDateChanged(_selectedDate);
     });
   }
 
