@@ -34,6 +34,7 @@ class _DateOrMonthSelectorState extends State<DateOrMonthSelector> {
   void _previousDay() {
     setState(() {
       _selectedDate = _selectedDate.subtract(Duration(days: 1));
+      // update or feed the _onDateChanged inside report.dart providing the new date
       widget.onDateChanged(_selectedDate);
     });
   }
